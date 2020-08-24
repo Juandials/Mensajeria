@@ -52,11 +52,36 @@ public class DAOServicio {
         2.Numero de servicio
         3.Fecha
         */
-        switch (tipoDeConsulta){
+        String sql;
+        PreparedStatement ps;
+        switch (tipoDeConsulta){//Se escoge la consulta según el dato que recibe el parametro "int tipoDeConsulta"
             case 1:
-                String sql = "select servicio.k_id_servicio from servicio where k_id_servicio=?;";
-                PreparedStatement ps = con.prepareStatement(sql);
-                ps.setString(1, "consulta");
+                String documentoS = consulta;
+                int documento = Integer.parseInt (documentoS);//Se realiza la conversión de tipos String -> Int
+                sql = "SELECT k_id_servicio, q_cantidad_trayectos, n_tipo_transporte, "
+                        + "i_tipo_ida_vuelta, f_inicio, o_hora_inicio, q_comision, v_costo_total, v_calificacion, "
+                        + "k_codigo_postal, k_tipo_documento, k_numero_documento, k_tipo_documento_cliente, "
+                        + "k_numero_documento_cliente where k_numero_documento_cliente=?;";
+                ps = con.prepareStatement(sql);
+                ps.setInt(1, documento);
+                break;
+            case 2:
+                String numeroDeServicioS = consulta;
+                int numeroDeServicio = Integer.parseInt (numeroDeServicioS);//Se realiza la conversión de tipos String -> Int
+                sql = "SELECT k_id_servicio, q_cantidad_trayectos, n_tipo_transporte, "
+                        + "i_tipo_ida_vuelta, f_inicio, o_hora_inicio, q_comision, v_costo_total, v_calificacion, "
+                        + "k_codigo_postal, k_tipo_documento, k_numero_documento, k_tipo_documento_cliente, "
+                        + "k_numero_documento_cliente where k_id_servicio=?;";
+                PreparedStatement ps1 = con.prepareStatement(sql);
+                ps1.setInt(1, numeroDeServicio);
+                break;
+            case 3:
+                sql = "SELECT k_id_servicio, q_cantidad_trayectos, n_tipo_transporte, "
+                        + "i_tipo_ida_vuelta, f_inicio, o_hora_inicio, q_comision, v_costo_total, v_calificacion, "
+                        + "k_codigo_postal, k_tipo_documento, k_numero_documento, k_tipo_documento_cliente, "
+                        + "k_numero_documento_cliente where f_inicio=?;";
+                PreparedStatement ps2 = con.prepareStatement(sql);
+                ps2.setString(1, consulta);//Convertir a date!
                 
         }
                 
