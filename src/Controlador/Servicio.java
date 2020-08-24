@@ -13,11 +13,66 @@ public class Servicio {
     int idServicio;
     int cantidadDeTrayectos;
     String tipoDeTransporte;
+    String tipoIdaVuelta;
     String fechaDeInicio;
     String horaDeInicio;
     int comision;
     int costoTotal;
     int calificacion;
+    int codigoPostalFK;
+    String tipoDeDocumentoFK;
+    int numeroDeDocumentoFK;
+    String tipoDeDocumentoClienteFK;
+    int numeroDeDocumentoClienteFK;
+
+    
+    public String getTipoIdaVuelta() {
+        return tipoIdaVuelta;
+    }
+
+    public void setTipoIdaVuelta(String tipoIdaVuelta) {
+        this.tipoIdaVuelta = tipoIdaVuelta;
+    }
+    
+    public int getCodigoPostalFK() {
+        return codigoPostalFK;
+    }
+
+    public void setCodigoPostalFK(int codigoPostalFK) {
+        this.codigoPostalFK = codigoPostalFK;
+    }
+
+    public String getTipoDeDocumentoFK() {
+        return tipoDeDocumentoFK;
+    }
+
+    public void setTipoDeDocumentoFK(String tipoDeDocumentoFK) {
+        this.tipoDeDocumentoFK = tipoDeDocumentoFK;
+    }
+
+    public int getNumeroDeDocumentoFK() {
+        return numeroDeDocumentoFK;
+    }
+
+    public void setNumeroDeDocumentoFK(int numeroDeDocumentoFK) {
+        this.numeroDeDocumentoFK = numeroDeDocumentoFK;
+    }
+
+    public String getTipoDeDocumentoClienteFK() {
+        return tipoDeDocumentoClienteFK;
+    }
+
+    public void setTipoDeDocumentoClienteFK(String tipoDeDocumentoClienteFK) {
+        this.tipoDeDocumentoClienteFK = tipoDeDocumentoClienteFK;
+    }
+
+    public int getNumeroDeDocumentoClienteFK() {
+        return numeroDeDocumentoClienteFK;
+    }
+
+    public void setNumeroDeDocumentoClienteFK(int numeroDeDocumentoClienteFK) {
+        this.numeroDeDocumentoClienteFK = numeroDeDocumentoClienteFK;
+    }
 
     public int getIdServicio() {
         return idServicio;
@@ -82,5 +137,5 @@ public class Servicio {
     public void setCalificacion(int calificacion) {
         this.calificacion = calificacion;
     }
-    
+
 }
