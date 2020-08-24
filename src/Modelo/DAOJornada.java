@@ -7,8 +7,10 @@ package Modelo;
 
 import Controlador.Jornada;
 import static Modelo.Conexion.con;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,19 +18,29 @@ import javax.swing.JOptionPane;
  * @author Juan
  */
 public class DAOJornada {
+    private Jornada jornada;
+    
+    public DAOJornada(){
+        jornada = new Jornada();
+    }
     public void InsertarJornada(){
-    Jornada jornada = new Jornada(0, "CC", 1922232, "2000","2100");//Instancia de nueva jornada
-        String sql = "INSERT into jornada VALUES (?, ?, ?, ?);";
+    
+        String sql = "INSERT into jornada VALUES (?, ?, ?, ?,?);";
         /*Script de inserción SQL, los signos de interrogación corresponden a
         los valores de cada columna
          */
+        Conexion a = new Conexion();
+        Time hora ;
+         String str = "08:03";
+        DateFormat formatter = new SimpleDateFormat("hh:mm");
+        Time.valueOf(str); //date = (Time)formatter.parse(str);
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, jornada.getDia());
-            ps.setString(2, jornada.getTipoDeDocumento());
-            ps.setInt(3, jornada.getNumeroDeDocumento());
-            ps.setString(4, jornada.getHoraInicial());
-            ps.setString(5, jornada.getHoraFinal());
+            ps.setString(1, jornada.getDia());
+            ps.setString(2, jornada.getTipoDocumento());
+            ps.setInt(3, jornada.getNumeroDocumento());
+            ps.setTime(4, Time.valueOf(str));
+            ps.setTime(5, Time.valueOf(str));
             ps.executeUpdate();
             ps.close();
         } catch (SQLException ex) {
@@ -36,5 +48,14 @@ public class DAOJornada {
         } finally {
             System.out.println("ok");
         }
-}
+    }
+
+    public Jornada getJornada() {
+        return jornada;
+    }
+
+    public void setJornada(Jornada jornada) {
+        this.jornada = jornada;
+    }
+    
 }
