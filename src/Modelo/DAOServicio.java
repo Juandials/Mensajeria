@@ -15,8 +15,10 @@ import Controlador.Servicio;
  * @author Juan
  */
 public class DAOServicio {
+        
+    Servicio servicio = new Servicio();
     public void InsertarServicio(){
-        Servicio servicio = new Servicio();
+        //Servicio servicio = new Servicio();
         String sql = "INSERT into servicio VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
         //Script de inserción SQL, los signos de interrogación corresponden a
         //los valores de cada columna
@@ -38,5 +40,26 @@ public class DAOServicio {
         } finally {
             System.out.println("ok");
         }
+    }
+    
+    /*
+    Un tipo de consulta para saber que es (documento, fecha o numero de servicio
+    y la consulta que será el dato para realizar el select
+    */
+    public void ConsultarServicio(int tipoDeConsulta, String consulta) throws SQLException{
+        /*Tipos de consulta
+        1.Documento
+        2.Numero de servicio
+        3.Fecha
+        */
+        switch (tipoDeConsulta){
+            case 1:
+                String sql = "select servicio.k_id_servicio from servicio where k_id_servicio=?;";
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setString(1, "consulta");
+                
+        }
+                
+                
     }
 }
